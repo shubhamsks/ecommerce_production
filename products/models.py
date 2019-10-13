@@ -5,8 +5,8 @@ from django.urls import reverse
 class Product(models.Model):
     title = models.CharField(max_length=150, null=False, blank=False)
     description = models.TextField()
-    price = models.DecimalField(max_digits=1000, decimal_places=2)
-    sale_price = models.DecimalField(max_digits=1000, decimal_places=6,null = True, blank = True)
+    price = models.DecimalField(max_digits=100, decimal_places=2)
+    sale_price = models.DecimalField(max_digits=100, decimal_places=6,null = True, blank = True)
     slug = models.SlugField(unique = True)
     timestamp = models.DateTimeField(auto_now_add=True, auto_now=False)
     updated = models.DateTimeField(auto_now_add=False, auto_now=True)
