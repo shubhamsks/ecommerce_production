@@ -39,7 +39,7 @@
     {% else %}
     <div class="background_thumb_img"></div>
     {% endif %}
-    <h2> <a href="{{ product.get_absolute_url }}">{{ product.title }} </a></h2>
+    <h5> <a href="{{ product.get_absolute_url }}">{{ product.title }} </a></h5>
     <h6> Price {{product.price }}</h6> 
     <p>{{ product.description|truncatechars:20 }}</p>
 </div>
