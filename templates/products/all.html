@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block head_title %}
+Products | Ecommerce.com
+{% endblock %}
+{% block content %}
+<style>
+.thumnails{
+    height: 400px;
+    widows: 400px;
+}
+</style>
+<div class="row">
+{% for product in products %}
+
+<div class="col-sm-4 card">
+
+    {% if product.productimage_set.all %}
+        {% for item in product.productimage_set.all %}
+        {% if item.featured %}
+        <a href="{{product.get_absolute_url}}">
+        <div class="background_thumb_img" style="
+          background-image: url('{{ item.image.url }}');
+        ">
+        </div>
+            </a>
+        <!-- <img src="{{ item.image.url }}" alt="{{product.title}}"class="img-fluid thumnails"/> -->
+        
+        {% endif %}
+        {% endfor %}
+    {% else %}
+    <div class="background_thumb_img"></div>
+    {% endif %}
+    <h2> <a href="{{ product.get_absolute_url }}">{{ product.title }} </a></h2>
+    <h6> Price {{product.price }}</h6> 
+    <p>{{ product.description|truncatechars:80 }}</p>
+</div>
+{% cycle "" ""  "</div><br/><hr/><div class='row'>" %}
+{% endfor %}
+</div>
+
+{% endblock %}

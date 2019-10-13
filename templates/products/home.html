@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block head_title %}
+ Ecommerce.com
+{% endblock %}
+{% block content %}
+<style>
+.thumnails{
+    height: 400px;
+    widows: 400px;
+}
+</style>
+<div class="row">
+{% for product in products %}
+
+<div class="col-sm-2 card">
+
+    {% if product.productimage_set.all %}
+        {% for item in product.productimage_set.all %}
+        {% if item.featured %}
+        <div style="
+            width: 100px;
+            margin: 0 auto;
+        ">
+        <a href="{{product.get_absolute_url}}">
+        <div class="background_thumb_img" style="
+            height: 100px;
+            width: 100px;
+            background-image: url('{{ item.image.url }}');
+        ">
+        </div>
+            </a>
+        </div>
+        <!-- <img src="{{ item.image.url }}" alt="{{product.title}}"class="img-fluid thumnails"/> -->
+        
+        {% endif %}
+        {% endfor %}
+    {% else %}
+    <div class="background_thumb_img"></div>
+    {% endif %}
+    <h2> <a href="{{ product.get_absolute_url }}">{{ product.title }} </a></h2>
+    <h6> Price {{product.price }}</h6> 
+    <p>{{ product.description|truncatechars:20 }}</p>
+</div>
+{% cycle "" "" "" "" "" "</div><br/><hr/><div class='row'>" %}
+{% endfor %}
+</div>
+
+{% endblock %}

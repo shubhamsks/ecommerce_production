@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<h1>searched for : {{ query }}</h1>
+<div class="row mt-2">
+        {% for product in products %}
+        
+        <div class="col-sm-4 card">
+        
+            {% if product.productimage_set.all %}
+                {% for item in product.productimage_set.all %}
+                {% if item.featured %}
+                <img src="{{ item.image.url }}" alt="{{product.title}}"class="img-fluid"/>
+                {% endif %}
+                {% endfor %}
+            {% else %}
+            <img src="{% static 'img/placeholder.jpg' %}" class="img-fluid"/>
+            {% endif %}
+            <h2> <a href="{{ product.get_absolute_url }}">{{ product.title }} </a></h2>
+            <p> Price {{product.price }}</p> 
+        </div>
+        {% cycle "" "" "" "</div><br/><hr/><div class='row'>" %}
+        {% endfor %}
+        </div>
+{% endblock %}
