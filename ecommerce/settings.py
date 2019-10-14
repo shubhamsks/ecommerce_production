@@ -25,7 +25,7 @@ SECRET_KEY = "5wnknp#pjcq3zgvg5(+jo5gu_3#6l_s0wwk++8(g%qh42-nhpa"
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['estorewebapp.herokuapp.com']
+ALLOWED_HOSTS = ['estorewebapp.herokuapp.com','ecommercewebapp.pythonanywhere.com']
 
 
 # Application definition
