@@ -1,5 +1,8 @@
 {% extends 'base.html' %}
 {% load static %}
+{% block head_title %}
+Search|{{query}} | Ecommerce.com
+{% endblock %}
 {% block content %}
 
 <h1>searched for : {{ query }}</h1>

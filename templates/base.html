@@ -54,6 +54,13 @@
   <body>
    {% include "navbar.html" %}
 <main role="main" class="container">
+    {% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+        <p{% if message.tags %} class="alert alert-{{ message.tags }}"{% endif %}>{{ message }}</p>
+        {% endfor %}
+    </ul>
+    {% endif %}
   {% block content %}
   {% endblock %}
 </main>

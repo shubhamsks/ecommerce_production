@@ -31,7 +31,11 @@
       {% else %}
       <li class="nav-item">
         <a class="nav-link" href="{% url 'auth_login' %}">Login</a>
+        
       </li>
+      <li class="nav-item">
+          <a class="nav-link" href="{% url 'auth_register' %}">Register</a>
+        </li>
       {% endif %}
     </ul>
     <form class="form-inline mt-2 mt-md-0" role="search" action="/s/">
