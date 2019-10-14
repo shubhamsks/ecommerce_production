@@ -1,4 +1,4 @@
-{% extends 'base.html' %} {% load crispy_forms_tags %} {% block content %}
+{% extends 'base.html' %} {% block content %}
 <div
   class="col-sm-6 offset-sm-3 login_form"
   style="
@@ -7,7 +7,7 @@ margin-top: 40px;
 >
   <form method="POST" action="">
     {% csrf_token %}
-    {{ form | crispy }}
+    {{ form.as_p }}
 
     <input
       type="submit"
