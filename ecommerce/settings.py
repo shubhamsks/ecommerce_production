@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     "orders",
     "cart",
     "accounts",
+    "crispy_forms",
 ]
 
 MIDDLEWARE = [
@@ -135,3 +136,4 @@ STRIPE_SECRET_KEY = "sk_test_Ef3uQr0mMNXBS9Z0E2u0OCbu00S9xCRdTv"
 STRIPE_PUBLISHABLE_KEY = "pk_test_egX0tzLTlo6Csig6Pauay4LJ00HEFUUYq0"
 django_heroku.settings(locals())
 
+CRISPY_TEMPLATE_PACK = 'bootstrap4'

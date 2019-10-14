@@ -2,7 +2,6 @@ from django.shortcuts import render, HttpResponseRedirect
 from django.contrib.auth import logout, login, authenticate
 from .forms import LoginForm, RegistrationForm
 from django.urls import reverse
-
 def logout_view(request):
     logout(request)
     return HttpResponseRedirect("/")
@@ -15,12 +14,12 @@ def login_view(request):
         password = form.cleaned_data["password"]
         user = authenticate(username=username, password=password)
         login(request, user)
-    
+
     context = {
         "form": form,
         "btn":"Login"
     }
-    return render(request, "form.html", context)
+    return render(request, "accounts/login_form.html", context)
 
 def registration_view(request):
     form = RegistrationForm(request.POST or None)
@@ -38,4 +37,4 @@ def registration_view(request):
     #     # user = authenticate(username=username, password=password)
     #     # login(request, user)
     context = {"form": form,"btn":"Join"}
-    return render(request, "form.html", context)
+    return render(request, "accounts/signup_form.html", context)

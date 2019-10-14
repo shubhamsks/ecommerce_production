@@ -1,0 +1,23 @@
+{% extends 'base.html' %} {% load crispy_forms_tags %} {% block content %}
+<div
+  class="col-sm-6 offset-sm-3 login_form"
+  style="
+margin-top: 40px;
+"
+>
+  <form method="POST" action="">
+    {% csrf_token %}
+    {{ form | crispy }}
+
+    <input
+      type="submit"
+      value=" {% if btn %} {{ btn }} {% else %} Submit {% endif %}"
+      class="btn btn-outline-success"
+    />
+  </form>
+  <p>
+    Alread have an account ? <a href="{% url 'auth_login' %}">click here </a> to
+    log in.
+  </p>
+</div>
+{% endblock %}
