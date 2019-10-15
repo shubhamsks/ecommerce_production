@@ -1,6 +1,9 @@
 from django.db import models
 from django.urls import reverse
+from django.template.defaultfilters import slugify
 
+# utility for uniqify slug field of products
+from . import utils
 # Product model to store the products 
 class Product(models.Model):
     title = models.CharField(max_length=150, null=False, blank=False)
@@ -18,12 +21,19 @@ class Product(models.Model):
         unique_together = ('title', 'slug')
     
     def get_absolute_url(self):
-        return reverse('single-product',kwargs={'slug':self.slug})
+        return reverse('single-product', kwargs={'slug': self.slug})
+    # creating a unique slug for products
+    def save(self, **kwargs):
+        slug_str = "%s %s" % (self.title,self.pk) 
+        utils.unique_slugify(self, slug_str) 
+        super(Product, self).save(**kwargs)
+
+                        
 
 # This model stores the images related to single product
 class ProductImage(models.Model):
     product = models.ForeignKey(Product, on_delete = models.CASCADE)
-    image = models.ImageField(upload_to='products/images', default = 'default.jpg')
+    image = models.ImageField(upload_to='products/images', default = 'products/images/default.png')
     featured = models.BooleanField(default=False)
     thumbnail = models.BooleanField(default=False)
     active = models.BooleanField(default=True)

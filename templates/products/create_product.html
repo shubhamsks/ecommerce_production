@@ -1,0 +1,21 @@
+{% extends 'base.html' %} {% load static %} {% load crispy_forms_tags %} 
+{% block head_title %} Add new Product| Ecommerce.com {% endblock %} {% block content %}
+<div
+  class="col-sm-6 offset-sm-3 login_form"
+  style="
+margin-top: 40px;
+"
+>
+  <form method="POST" action="" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ product_form | crispy }}
+    {{ product_image_form|crispy}}
+    <input
+      type="submit"
+      value=" {% if btn %} {{ btn }} {% else %} Submit {% endif %}"
+      class="btn btn-outline-success"
+    />
+  </form>
+</div>
+
+{% endblock %}

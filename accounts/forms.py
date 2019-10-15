@@ -6,14 +6,6 @@ User = get_user_model()
 class LoginForm(forms.Form):
     username = forms.CharField()
     password = forms.CharField(widget=forms.PasswordInput())
-
-    # def clean_username(self):
-    #     username = self.cleaned_data.get('username')
-    #     try:
-    #         user = User.objects.get(username=username)
-    #     except User.DoesNotExist:
-    #         raise forms.ValidationError('Are you sure you registered? We cannot find this user name')
-    #     return username
     def clean_password(self):
         username = self.cleaned_data.get('username')
         password = self.cleaned_data.get('password')
