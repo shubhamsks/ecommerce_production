@@ -20,14 +20,22 @@
    {% block styles %}
     {% endblock %}
     .background_thumb_img{
-          width: 210px;
-          height: 210px;
+          width: 200px;
+          height: 200px;
+          margin: 2px 2px 2px 2px;
+          border-radius: 10px;
           /*background-color: red;*/
           background-image: url('{{ product.get_absolute_url }}');
           background-repeat: no-repeat;
           background-size: cover;
           background-position: center;
           margin: 0 auto;
+    }
+    .background{
+      background: #C6FFDD;  /* fallback for old browsers */
+      background: -webkit-linear-gradient(to right, #f7797d, #FBD786, #C6FFDD);  /* Chrome 10-25, Safari 5.1-6 */
+      background: linear-gradient(to right, #f7797d, #FBD786, #C6FFDD); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
     }
     </style>
     <!-- Bootstrap core CSS -->
@@ -53,7 +61,7 @@
   </head>
   <body>
    {% include "navbar.html" %}
-<main role="main" class="container">
+<main role="main" class="w-100 p-3">
     {% if messages %}
     <ul class="messages">
         {% for message in messages %}

@@ -21,22 +21,23 @@ Products | Ecommerce.com
         {% if item.featured %}
         <a href="{{product.get_absolute_url}}">
         <div class="background_thumb_img" style="
+          border-radius: 50px;
           background-image: url('{{ item.image.url }}');
         ">
         </div>
-            </a>
+            </a>    
         <!-- <img src="{{ item.image.url }}" alt="{{product.title}}"class="img-fluid thumnails"/> -->
         
         {% endif %}
         {% endfor %}
     {% else %}
-    <div class="background_thumb_img"></div>
+    <div class="background_thumb_img"></div>    
     {% endif %}
     <h4> <a href="{{ product.get_absolute_url }}">{{ product.title }} </a></h4>
     <h6> Price {{product.price }}</h6> 
     <p>{{ product.description|truncatechars:80 }}</p>
 </div>
-{% cycle "" ""  "</div><br/><hr/><div class='row'>" %}
+{% cycle "" ""  "</div><br/><div class='row'>" %}
 {% endfor %}
 </div>
 
