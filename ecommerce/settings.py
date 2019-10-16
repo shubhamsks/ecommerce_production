@@ -25,8 +25,25 @@ SECRET_KEY = "5wnknp#pjcq3zgvg5(+jo5gu_3#6l_s0wwk++8(g%qh42-nhpa"
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['estorewebapp.herokuapp.com','ecommercewebapp.pythonanywhere.com']
+ALLOWED_HOSTS = ['estorewebapp.herokuapp.com', 'ecommercewebapp.pythonanywhere.com']
 
+# Site Url
+if DEBUG:
+    SITE_URL = 'http://localhost:8000'
+if not DEBUG:
+    SITE_URL = ALLOWED_HOSTS[1]
+
+# Email stuff
+from .email import password
+try:
+    DEFAULT_FROM_EMAIL = "ECommerce <shubhamfakeacc@gmail.com>"
+    EMAIL_HOST = 'smtp.gmail.com'
+    EMAIL_USE_SSL = True
+    EMAIL_PORT = 465
+    EMAIL_HOST_USER = 'shubhamfakeacc@gmail.com'
+    EMAIL_HOST_PASSWORD = password
+except:
+    pass
 
 # Application definition
 

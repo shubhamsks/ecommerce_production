@@ -1,0 +1,6 @@
+Hey,
+Please confirm your email:
+{{ activation_url }}
+Thankyou
+-Ecommerce
+
