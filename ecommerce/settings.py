@@ -28,8 +28,9 @@ DEBUG = True
 ALLOWED_HOSTS = ['estorewebapp.herokuapp.com', 'ecommercewebapp.pythonanywhere.com']
 
 # Site Url
+# It will be changed later (development)
 if DEBUG:
-    SITE_URL = 'http://localhost:8000'
+    SITE_URL = ALLOWED_HOSTS[1]
 if not DEBUG:
     SITE_URL = ALLOWED_HOSTS[1]
 
