@@ -1,27 +1,36 @@
 {% extends 'base.html' %} {% load crispy_forms_tags %}
 {% block head_title %}
-Registration | Ecommerce.com
+Register | Ecommerce.com
 {% endblock %}
 {% block content %}
-<div
-  class="col-sm-6 offset-sm-3 login_form"
-  style="
-margin-top: 40px;
-"
->
-  <form method="POST" action="">
-    {% csrf_token %}
-    {{ form | crispy }}
+<!-- Default form login -->
+<div class="card">
+<form class="text-center border border-light" action="" method="POST">
 
-    <input
-      type="submit"
-      value=" {% if btn %} {{ btn }} {% else %} Submit {% endif %}"
-      class="btn btn-outline-success"
-    />
-  </form>
-  <p>
-    Alread have an account ? <a href="{% url 'auth_login' %}">click here </a> to
-    log in.
-  </p>
+    <p class="h4 mb-4 card-header info-color white-text text-center py-4">Join</p>
+        {% csrf_token %}
+        {{ form | crispy }}
+
+    <!-- Sign in button -->
+    <input class="btn btn-outline-info btn-rounded btn-block my-4 waves-effect z-depth-0 " 
+    value=" {% if btn %} {{ btn }} {% else %} Submit {% endif %}"
+    type="submit">
+
+    <!-- Register -->
+    <p> 
+      Already have an account ? <a href="{% url 'auth_login' %}"> click here</a> to
+      Login
+    </p>
+
+    <!-- Social login -->
+    <!-- <p>or sign in with:</p>
+
+    <a href="#" class="mx-2" role="button"><i class="fab fa-facebook-f light-blue-text"></i></a>
+    <a href="#" class="mx-2" role="button"><i class="fab fa-twitter light-blue-text"></i></a>
+    <a href="#" class="mx-2" role="button"><i class="fab fa-linkedin-in light-blue-text"></i></a>
+    <a href="#" class="mx-2" role="button"><i class="fab fa-github light-blue-text"></i></a> -->
+
+</form>
 </div>
+
 {% endblock %}

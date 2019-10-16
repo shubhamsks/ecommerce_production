@@ -1,55 +1,76 @@
-<nav class="navbar navbar-expand-md navbar-light bg-light" >
-  <a class="navbar-brand" href="#">ECommerce </a>
-  <button
-    class="navbar-toggler"
-    type="button"
-    data-toggle="collapse"
-    data-target="#navbarCollapse"
-    aria-controls="navbarCollapse"
-    aria-expanded="false"
-    aria-label="Toggle navigation"
-  >
-    <span class="navbar-toggler-icon"></span>
-  </button>
-  <div class="collapse navbar-collapse" id="navbarCollapse">
-    <ul class="navbar-nav mr-auto">
+<!-- Navbar -->
+<nav class="navbar fixed-top navbar-expand-lg navbar-light white scrolling-navbar">
+    <div class="container">
 
-      <li class="nav-item active">
-          <a class="nav-link" href="/">Home <span class="sr-only"></span></a>
-      </li>
-      <li class="nav-item active">
-          <a class="nav-link" href="{% url 'products' %}">Products <span class="sr-only"></span></a>
-      </li>
-      {% if user.is_authenticated %}
-      <li class="nav-item">
-        <a class="nav-link btn btn-primary" style='color:#fff' href="{% url 'cart' %}"> Cart <span class="badge badge-light">{{ request.session.cart_items_count}}</span> </a>
-      </li>
+      <!-- Brand -->
+      <a class="navbar-brand waves-effect" href="/" >
+        <strong class="blue-text">ECommerce</strong>
+      </a>
 
-      <li class="nav-item">
-        <a class="nav-link" href="{% url 'auth_logout' %}">Logout</a>
-      </li>
-      {% else %}
-      <li class="nav-item">
-        <a class="nav-link" href="{% url 'auth_login' %}">Login</a>
-        
-      </li>
-      <li class="nav-item">
-          <a class="nav-link" href="{% url 'auth_register' %}">Register</a>
-        </li>
-      {% endif %}
-    </ul>
-    <form class="form-inline mt-2 mt-md-0" role="search" action="/s/">
-      <input
-        name="q"
-        class="form-control mr-sm-2"
-        type="text"
-        placeholder="Search"
-        aria-label="Search"
-      />
-      <div></div>
-      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">
-        Search
+      <!-- Collapse -->
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+        aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
       </button>
-    </form>
-  </div>
-</nav>
+
+      <!-- Links -->
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+        <!-- Left -->
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item">
+            <a class="nav-link waves-effect" href="/">Home
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link waves-effect"
+             href="{% url 'products' %}">
+             Products</a>
+          </li>
+          {% if user.is_authenticated %}
+          <li class="nav-item">
+            <a class="nav-link waves-effect" 
+            href="{% url 'auth_logout' %}">Logout</a>
+          </li>
+          {% else %}
+          <li class="nav-item">
+            <a class="nav-link waves-effect"
+             href="{% url 'auth_register' %}">Register</a>
+          </li>
+          <li class="nav-item">
+              <a class="nav-link waves-effect"
+               href="{% url 'auth_login' %}">Login</a>
+            </li>
+          {% endif %}
+        </ul>
+          <!-- Right -->
+          <ul class="navbar-nav nav-flex-icons">
+            {% if user.is_authenticated %}
+              <li class="nav-item">
+                <a class="nav-link waves-effect" href="{% url 'cart' %}">
+                  <span class="badge red z-depth-1 mr-1"> {{ request.session.cart_items_count}} </span>
+                  <i class="fas fa-shopping-cart"></i>
+                  <span class="clearfix d-none d-sm-inline-block"> Cart </span>
+                </a>
+              </li>
+              {% endif %}
+              <form class="form-inline" role="search" action="/s/">
+                <input
+                  name="q"
+                  class="form-control"
+                  type="text"
+                  placeholder="Search"
+                  aria-label="Search"
+                />
+                <div></div>
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">
+                  Search
+                </button>
+              </form>
+            </ul>
+    
+          </div>
+    
+        </div>
+      </nav>
+

@@ -11,34 +11,50 @@ Products | Ecommerce.com
     widows: 400px;
 }
 </style>
-<div class="row">
+ <!--Grid row-->
+ <section class="text-center mb-4">
+ <div class="row wow fadeIn">
 {% for product in products %}
+        <!--Grid column-->
+        <div class="col-lg-3 col-md-6 mb-4">
 
-<div class="col-sm-4 card">
+          <!--Card-->
+          <div class="card">
 
-    {% if product.productimage_set.all %}
-        {% for item in product.productimage_set.all %}
-        {% if item.featured %}
-        <a href="{{product.get_absolute_url}}">
-        <div class="background_thumb_img" style="
-          border-radius: 50px;
-          background-image: url('{{ item.image.url }}');
-        ">
-        </div>
-            </a>    
-        <!-- <img src="{{ item.image.url }}" alt="{{product.title}}"class="img-fluid thumnails"/> -->
-        
-        {% endif %}
-        {% endfor %}
-    {% else %}
-    <div class="background_thumb_img"></div>    
-    {% endif %}
-    <h4> <a href="{{ product.get_absolute_url }}">{{ product.title }} </a></h4>
-    <h6> Price {{product.price }}</h6> 
-    <p>{{ product.description|truncatechars:80 }}</p>
-</div>
-{% cycle "" ""  "</div><br/><div class='row'>" %}
+            <!--Card image-->
+            <div class="view overlay">
+            {% if product.productimage_set.all %}
+            {% for item in product.productimage_set.all %}
+            {% if item.featured %}
+              <img src="{{ item.image.url }}"
+               class="card-img-top"
+                alt="">
+              <a href="{{ product.get_absolute_url }}">
+                <div class="mask rgba-white-slight"></div>
+              </a>
+            </div>
+            {% endif %}
+            {% endfor %}
+            {% endif %}
+            <!--Card image-->
+            <!--Card content-->
+            <div class="card-body text-center">
+              <!--Category & Title-->
+              <h5>
+                <strong>
+                  <a href="{{ product.get_absolute_url }}"
+                   class="dark-grey-text">
+                   {{ product.title }}
+                  </a>
+                </strong>
+              </h5>
+
+              <h4 class="font-weight-bold blue-text">
+                <strong>₹{{product.price }}</strong>
+              </h4>
+            </div>
+            </div>
+            </div>
 {% endfor %}
-</div>
-
+ </section>
 {% endblock %}

@@ -1,18 +1,20 @@
 from django import forms
 from . import models
+
+# Form for product creation involving only product model
 class ProductForm(forms.ModelForm):
-    # title = forms.CharField(max_length=150)
-    # description = forms.CharField(widget = forms.Textarea)
-    # price = forms.DecimalField(max_digits=10, decimal_places=2)
-    # sale_price = forms.DecimalField(max_digits=10, decimal_places=2)
     class Meta:
         model = models.Product
         fields = ['title', 'description', 'price', 'sale_price']
+
+# Form for ProductImage creating involving only ProductImage Model and product is associated in views
 class ProductImageForm(forms.ModelForm):
-    # image = forms.ImageField()
-    # featured = forms.BooleanField()
-    # thumbnail = forms.BooleanField(required=False
     class Meta:
         model = models.ProductImage
         fields = ['image', 'featured', 'thumbnail', 'active']
+
+# class ProductVariationsForm(forms.ModelForm):
+#     class Meta:
+#             model = models.Variations
+#             fields =['category','title','price'] 
         

@@ -9,12 +9,12 @@ from . import forms
 from django.contrib.auth.decorators import login_required
 # Create your views here.
 def home(request):
-    context = {'products': Product.objects.all}
+    context = {'products': Product.objects.all,}
     template = 'products/home.html'
     return render(request, template, context)
 
 def all(request):
-    context = {'products': Product.objects.all}
+    context = {'products': Product.objects.all,}
     template = 'products/all.html'
     return render(request, template, context)
 def single(request, slug):
