@@ -19,7 +19,6 @@ def login_view(request):
         user = authenticate(username=username, password=password)
         login(request, user)
         messages.success(request, "Yoh have been logged in successfully.")
-        
         return HttpResponseRedirect(reverse('home'))
 
     context = {
@@ -28,6 +27,10 @@ def login_view(request):
     }
     return render(request, "accounts_templates/login_form.html", context)
 
+
+
+# Registration view is for registering the new user to the website, when user make new account
+# by signing up it triggers the @post_save in signals.py and an is sent to the user
 def registration_view(request):
     form = RegistrationForm(request.POST or None)
     if form.is_valid():
@@ -40,10 +43,6 @@ def registration_view(request):
         login(request, new_user)
         messages.success(request,"You have been registered successfully. Enjoy shopping.")
         return HttpResponseRedirect(reverse('home'))
-    #     # username = form.cleaned_data["username"]
-    #     # password = form.cleaned_data["password"]
-    #     # user = authenticate(username=username, password=password)
-    #     # login(request, user)
     context = {"form": form,"btn":"Join"}
     return render(request, "accounts_templates/signup_form.html", context)
 # regular expression for checking whether or not activation key fits with this search
@@ -71,3 +70,5 @@ def activation_view(request, activation_key):
     context = {'page_message':page_message}
     return render(request,'accounts_templates/activation_view.html',context)
 
+def forgot_password(request):
+    return render(request, 'coming_soon.html',{})

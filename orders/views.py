@@ -36,6 +36,6 @@ def checkout(request):
 		del request.session['cart_id']
 		del request.session['cart_items_count']
 	context = {}
-	template = 'products/home.html'
+	template = 'coming_soon.html'
 
 	return render(request, template, context)

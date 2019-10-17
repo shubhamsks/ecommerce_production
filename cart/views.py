@@ -3,6 +3,7 @@ from django.urls import reverse
 # views here
 from .models import Cart, CartItem
 from products.models import Product, Variations
+from django.contrib.auth.decorators import login_required
 
 def cart_view(request):
     try:
@@ -37,6 +38,7 @@ def remove_from_cart(request, id):
     cart_item.save()
     return HttpResponseRedirect(reverse('cart'))
 
+@login_required
 def add_to_cart(request, slug):
     try:
         the_id = request.session['cart_id']

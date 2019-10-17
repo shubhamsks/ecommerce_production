@@ -2,48 +2,67 @@
 {% load static %}
 
 {% block head_title %}
- Ecommerce.com
+Products | Ecommerce.com
 {% endblock %}
 {% block content %}
 <style>
 .thumnails{
-    height: 400px;
+    height: 300px;
     widows: 400px;
+    background: linear-gradient(90deg, #00C9FF 0%, #92FE9D 100%);
+    color: black;
+    text-align: center;
+    padding-top: 100px;
 }
+
 </style>
-<div class="row">
+<div class="jumbotron thumnails">
+   <h1> Welcome to Ecommerce.com</h1>
+</div>
+ <!--Grid row-->
+ <section class="text-center mb-4">
+ <div class="row wow fadeIn">
 {% for product in products %}
+        <!--Grid column-->
+        <div class="col-lg-3 col-md-6 mb-4">
 
-<div class="col-sm-2 card">
+          <!--Card-->
+          <div class="card">
 
-    {% if product.productimage_set.all %}
-        {% for item in product.productimage_set.all %}
-        {% if item.featured %}
-        <div style="
-            width: 100px;
-            margin: 0 auto;
-        ">
-        <a href="{{product.get_absolute_url}}">
-        <div class="background_thumb_img" style="
-            height: 100px;
-            width: 100px;
-            background-image: url('{{ item.image.url }}');
-        ">
-        </div>
-            </a>
-        </div>
-        <!-- <img src="{{ item.image.url }}" alt="{{product.title}}"class="img-fluid thumnails"/> -->
-        
-        {% endif %}
-        {% endfor %}
-    {% else %}
-    {% endif %}
-    <p> <a href="{{ product.get_absolute_url }}">{{ product.title|truncatechars:30 }} </a></p>
-    <h6> Price {{product.price }}</h6> 
-    <p>{{ product.description|truncatechars:20 }}</p>
-</div>
-{% cycle "" "" "" "" "" "</div><br/><div class='row'>" %}
+            <!--Card image-->
+            <div class="view overlay">
+            {% if product.productimage_set.all %}
+            {% for item in product.productimage_set.all %}
+            {% if item.featured %}
+              <img src="{{ item.image.url }}"
+               class="card-img-top"
+                alt="">
+              <a href="{{ product.get_absolute_url }}">
+                <div class="mask rgba-white-slight"></div>
+              </a>
+            </div>
+            {% endif %}
+            {% endfor %}
+            {% endif %}
+            <!--Card image-->
+            <!--Card content-->
+            <div class="card-body text-center">
+              <!--Category & Title-->
+              <h5>
+                <strong>
+                  <a href="{{ product.get_absolute_url }}"
+                   class="dark-grey-text">
+                   {{ product.title }}
+                  </a>
+                </strong>
+              </h5>
+
+              <h4 class="font-weight-bold blue-text">
+                <strong>₹{{product.price }}</strong>
+              </h4>
+            </div>
+            </div>
+            </div>
 {% endfor %}
-</div>
-
+ </section>
 {% endblock %}
