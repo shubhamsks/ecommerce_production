@@ -41,7 +41,8 @@ def registration_view(request):
         password = form.cleaned_data.get('password2')
         user = authenticate(request,username = username, password = password)
         login(request, new_user)
-        messages.success(request,"You have been registered successfully. Enjoy shopping.")
+        messages.success(request, "You have been registered successfully. Enjoy shopping.")
+        messages.info(request,"An email has been sent to you for confirmation please click on the link provided to confirm your email address.")
         return HttpResponseRedirect(reverse('home'))
     context = {"form": form,"btn":"Join"}
     return render(request, "accounts_templates/signup_form.html", context)
