@@ -18,14 +18,19 @@ from django.urls import path, include
 from django.conf.urls.static import static
 from django.conf import settings
 from orders import views
-
+from accounts import views as accounts_views
 urlpatterns = [
     path('', include('products.urls')),
     path('admin/', admin.site.urls),
     path('cart/', include('cart.urls')),
     path('checkout/',views.checkout,name= 'checkout'),
     path('orders/', views.orders, name='user_orders'),
-    path('accounts/',include('accounts.urls'))
+    path('accounts/', include('accounts.urls')),
+    path('marketing/', include('marketing.urls')),
+    path('coming_soon/',views.coming_soon, name = 'coming_soon'),
+    path('ajax/add_user_address', accounts_views.add_user_address, name='add_user_address'),
+    # path('payment/', views.stripe_payment_view, name='payment'),
+    
 ]
 if settings.DEBUG:
     urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

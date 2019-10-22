@@ -1,8 +1,16 @@
 from django import forms
 from django.contrib.auth import get_user_model
-
+from .models import UserAdress
 
 User = get_user_model()
+
+class UserAdressForm(forms.ModelForm):
+    default = forms.BooleanField(label = 'Make default')
+    class Meta:
+        model = UserAdress
+        fields = ['address', 'city', 'city', 'state', 'country', 'zip_code', 'phone']
+
+
 class LoginForm(forms.Form):
     username = forms.CharField()
     password = forms.CharField(widget=forms.PasswordInput())

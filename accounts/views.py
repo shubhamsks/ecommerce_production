@@ -4,6 +4,9 @@ from .forms import LoginForm, RegistrationForm
 from django.urls import reverse
 from django.contrib import messages
 from .models import EmailConfirmed
+from accounts.models import UserAdress, UserDefaultAddress
+from .forms import UserAdressForm
+from django.shortcuts import redirect
 import re
 def logout_view(request):
     messages.info(request,"You have been logged out successfully. Feel free to login again. ")
@@ -72,4 +75,27 @@ def activation_view(request, activation_key):
     return render(request,'accounts_templates/activation_view.html',context)
 
 def forgot_password(request):
-    return render(request, 'coming_soon.html',{})
+    return render(request, 'coming_soon.html', {})
+    
+def add_user_address(request):
+    print(request.GET)
+    try:
+        redirect_url = request.GET.get('redirect')
+    except:
+        redirect_url = None
+    if request.method == 'POST':
+        form = UserAdressForm(request.POST)
+        if form.is_valid():
+            new_address = form.save(commit=False)
+            new_address.user = request.user
+            new_address.save()
+            is_default = form.cleaned_data['default']
+            if is_default:
+                default_address, created = UserDefaultAddress.objects.get_or_create(user=request.user)
+                default_address.shipping = new_address
+                default_address.save()
+            if redirect_url is not None:
+                print(redirect_url)
+                return HttpResponseRedirect(reverse(str(redirect_url))+"?address_added=True")
+    else:
+        raise Http404

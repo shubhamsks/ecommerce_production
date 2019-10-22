@@ -4,12 +4,26 @@ from django.shortcuts import (render,
                             redirect,)
 from django.urls import reverse
 from django.contrib import messages
-from .models import Product, ProductImage
 from . import forms
 from django.contrib.auth.decorators import login_required
+
+
+from .models import Product, ProductImage
+from marketing.models import MarketingMessage, Sliders
+
 # Create your views here.
 def home(request):
-    context = {'products': Product.objects.all,}
+    sliders = Sliders.objects.all_featured()
+    print(sliders)
+    try:
+        marketing_message = MarketingMessage.objects.get_featured_item()
+    except:
+        marketing_message = False
+        print(marketing_message)
+    context = {'products': Product.objects.all,
+                'marketing_message': marketing_message,
+                'sliders':sliders,
+                }
     template = 'products/home.html'
     return render(request, template, context)
 

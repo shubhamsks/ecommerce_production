@@ -5,6 +5,39 @@ from django.core.mail import send_mail
 from django.template.loader import render_to_string
 from django.urls import reverse
 # Create your models here.
+class UserDefaultAddress(models.Model):
+	user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+	shipping = models.ForeignKey("UserAdress", null=True, blank=True, on_delete=models.CASCADE)
+	
+	def __str__(self):
+	 return str(self.user.username)
+
+
+class UserAdress(models.Model):
+	user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+	address = models.CharField(max_length=120, null=True, blank=True)
+	city = models.CharField(max_length=120, null=True, blank=True)
+	state = models.CharField(max_length=120, null=True, blank=True)
+	country = models.CharField(max_length=120)
+	zip_code = models.CharField(max_length=25)
+	phone = models.CharField(max_length=120)
+	shipping = models.BooleanField(default=True)
+	billing = models.BooleanField(default=False)
+	timestamp = models.DateTimeField(auto_now_add=True, auto_now=False)
+	updated = models.DateTimeField(auto_now_add=False, auto_now=True)
+
+
+	def __str__(self):
+		return str(self.user.username)
+	def get_user_addresses(self):
+		return "{},{},{},{},{}".format(self.address, self.city, self.state, self.country, self.zip_code)
+	class Meta:
+		ordering = ['-timestamp','-updated']
+
+	
+	
+
+
 class UserStripe(models.Model):
 	user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete = models.CASCADE)
 	stripe_id = models.CharField(max_length = 120, null = True, blank = True)

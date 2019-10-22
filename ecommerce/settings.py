@@ -59,6 +59,7 @@ INSTALLED_APPS = [
     "orders",
     "cart",
     "accounts",
+    "marketing",
     "crispy_forms",
 ]
 
@@ -70,6 +71,8 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
+    # custom middle ware
+    "marketing.middleware.DisplayMarketingMessage",
 ]
 
 ROOT_URLCONF = "ecommerce.urls"
@@ -150,8 +153,8 @@ MEDIA_ROOT = os.path.join(BASE_DIR,"static", "media",)
 STATIC_ROOT = os.path.join(BASE_DIR,"static", "static_root",)
 STATICFILES_DIRS = (os.path.join(BASE_DIR,"static", "static_files"),)
 
-STRIPE_SECRET_KEY = "sk_test_Ef3uQr0mMNXBS9Z0E2u0OCbu00S9xCRdTv"
-STRIPE_PUBLISHABLE_KEY = "pk_test_egX0tzLTlo6Csig6Pauay4LJ00HEFUUYq0"
+# STRIPE_SECRET_KEY = "sk_test_Ef3uQr0mMNXBS9Z0E2u0OCbu00S9xCRdTv"
+# STRIPE_PUBLISHABLE_KEY = "pk_test_egX0tzLTlo6Csig6Pauay4LJ00HEFUUYq0"
 django_heroku.settings(locals())
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
