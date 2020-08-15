@@ -24,7 +24,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('cart/', include('cart.urls')),
     path('checkout/',views.checkout,name= 'checkout'),
-    path('orders/', views.orders, name='user_orders'),
+    path('orders/', include('orders.urls')),
     path('accounts/', include('accounts.urls')),
     path('marketing/', include('marketing.urls')),
     path('coming_soon/',views.coming_soon, name = 'coming_soon'),

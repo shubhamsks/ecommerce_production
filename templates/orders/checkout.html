@@ -3,6 +3,12 @@
 {% block content %}
 <br />
 <div class="container">
+  <div class="breadcrumb ">
+    <p><b>Note**</b> This is just a sample payment using stripe.<p>
+  </div>
+  <b><p> Use Card no: 4242 4242 4242 4242 </p> </b>
+  <b> <p> expire date: any date greater than today, </p>  </b>
+  <b> <p> cvc : 123 </p> </b>
   <div class="row">
         {% if address_form %}
         <div class="col-sm-6 pull-right">
@@ -18,37 +24,24 @@
           </form>
         </div>
         {% endif %}
-
-
-    <div class="col-sm-6">
-      <form action="{% url 'coming_soon' %}" method="POST">
+        <div class="col-sm-6">
+        {% if current_addresses %}
+        <h3>Saved Addresses</h3>
+        {% for address in current_addresses %} <input name="address" type="radio" value="{{ address.get_user_addresses }} "
+         {% if request.user.userdefaultaddress.shipping.id == address.id %}checked='checked' {% endif %}>
+         {{ address.get_user_addresses }} <br />
+        {% endfor %}
+        {% endif %}
+        <form action="{% url 'charge' %}" method="POST">
           {% csrf_token %}
-          {% if current_addresses %}
-      <h3>Saved Addresses</h3>
-      {% for address in current_addresses %} <input name="address" type="radio" value="{{ address.get_user_addresses }} "
-       {% if request.user.userdefaultaddress.shipping.id == address.id %}checked='checked' {% endif %}>
-       {{ address.get_user_addresses }} <br />
-      {% endfor %}
-      {% endif %}
-      <!-- Material input -->
-      <div class="md-form">
-        Credit/Debit card number
-         <input type="text"
-         placeholder="1234 5678 9101 1223"
-         id="card" name="payment_card"
-          class="form-control">
-          Expiry month
-          <input type="text" style="width: 100px;" name="exp_month" placeholder="MM" maxlength="2"><br><br>
-          Expiry year
-          <input type="text" style="width: 100px;" name="exp_year" placeholder="YYYY" maxlength="4"><br><br>
-          CVC
-          <input type="text" style="width: 100px;" name="cvc" placeholder="" maxlength="">
-
-      </div>
-      <input type="submit" value="Next>" class="btn">
-      </form>
-
-    </div>
+            <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+            data-key="{{ stripe_key }}"
+            data-description="Some order"
+            data-amount="100"
+            data-locale="auto">
+            </script>
+        </div>
+        </form>
   </div>
   </div>
 

@@ -1,5 +1,4 @@
 {
     "git.ignoreLimitWarning": true,
-    "python.pythonPath": "C:\\Python37\\python3.exe",
     "python.formatting.provider": "black"
 }

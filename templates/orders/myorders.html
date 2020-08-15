@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{% for order in user.order_set.all %}
+	<div class="card p-3">
+		<h4>Order Id{{ order.order_id }}</h4>
+		<p>Order total {{ order.final_total }} INR</p>
+		
+	</div>
+{% endfor %}
+{% endblock content %}

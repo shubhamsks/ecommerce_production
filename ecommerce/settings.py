@@ -11,21 +11,23 @@ https://docs.djangoproject.com/en/2.2/ref/settings/
 """
 
 import os
-import django_heroku
+import environ
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-
-
+env = environ.Env(
+    DEBUG=(bool,False)
+)
+environ.Env.read_env()
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/2.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = "5wnknp#pjcq3zgvg5(+jo5gu_3#6l_s0wwk++8(g%qh42-nhpa"
+SECRET_KEY = env('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['estorewebapp.herokuapp.com', 'ecommercewebapp.pythonanywhere.com']
+ALLOWED_HOSTS = ['ecommercewebapp.pythonanywhere.com', '127.0.0.1','localhost']
 
 # Site Url
 # It will be changed later (development)
@@ -152,9 +154,9 @@ MEDIA_URL = "/media/"
 MEDIA_ROOT = os.path.join(BASE_DIR,"static", "media",)
 STATIC_ROOT = os.path.join(BASE_DIR,"static", "static_root",)
 STATICFILES_DIRS = (os.path.join(BASE_DIR,"static", "static_files"),)
+# Stripe
 
-# STRIPE_SECRET_KEY = "sk_test_Ef3uQr0mMNXBS9Z0E2u0OCbu00S9xCRdTv"
-# STRIPE_PUBLISHABLE_KEY = "pk_test_egX0tzLTlo6Csig6Pauay4LJ00HEFUUYq0"
-django_heroku.settings(locals())
+STRIPE_PUBLISHABLE_KEY = env('STRIPE_TEST_PUBLISHABLE_KEY')
+STRIPE_SECRET_KEY = env('STRIPE_TEST_SECRET_KEY')
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'

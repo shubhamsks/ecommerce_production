@@ -68,9 +68,6 @@ def add_to_cart(request, slug):
                     product_vars.append(v)
                 except:
                     pass
-                    
-                    
-            
             cart_item = CartItem.objects.create(cart = cart,product=product)   
             if len(product_vars) >0 :   
                 cart_item.variations.add(*product_vars)

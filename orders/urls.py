@@ -16,5 +16,6 @@ Including another URLconf
 from django.urls import path, include
 from . import views
 urlpatterns = [
-    path()
+    path('', views.orders, name = 'orders'),
+    path('charge/',views.charge, name = 'charge'),
 ]
