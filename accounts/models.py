@@ -45,6 +45,7 @@ class UserStripe(models.Model):
 
 	def __str__(self):
 		return str(self.stripe_id)
+
 # "cus_FlVH0dvFfHqn9m",
 # cus_FlVWnhr4QXrfTl
 # cus_FlVWnhr4QXrfTl

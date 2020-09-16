@@ -1,2 +1,0 @@
-password = 'gesuza@123'
-    

@@ -3,8 +3,8 @@ from django.contrib.auth import logout, login, authenticate
 from .forms import LoginForm, RegistrationForm
 from django.urls import reverse
 from django.contrib import messages
-from .models import EmailConfirmed
 from accounts.models import UserAdress, UserDefaultAddress
+from .models import EmailConfirmed
 from .forms import UserAdressForm
 from django.shortcuts import redirect
 import re
@@ -45,10 +45,12 @@ def registration_view(request):
         user = authenticate(request,username = username, password = password)
         login(request, new_user)
         messages.success(request, "You have been registered successfully. Enjoy shopping.")
-        messages.info(request,"An email has been sent to you for confirmation please click on the link provided to confirm your email address.")
+        messages.info(request,'An email has been sent to you please confirm by clicking on the link given.')
         return HttpResponseRedirect(reverse('home'))
     context = {"form": form,"btn":"Join"}
     return render(request, "accounts_templates/signup_form.html", context)
+
+
 # regular expression for checking whether or not activation key fits with this search
 SHA1_RE = re.compile('^[a-f0-9]{40}$')
 def activation_view(request, activation_key):
@@ -58,7 +60,7 @@ def activation_view(request, activation_key):
             instance = EmailConfirmed.objects.get(activation_key=activation_key)
         except EmailConfirmed.DoesNotExist:
             instance = None
-            messages.error(request,'There was an error with your requrest.')
+            messages.error(request,'There was an error with your request.')
             return HttpResponseRedirect('/')
         if instance is not None and not instance.confirmed:
             page_message = "Confirmation Successful Welcome"

@@ -21,7 +21,7 @@ from orders import views
 from accounts import views as accounts_views
 urlpatterns = [
     path('', include('products.urls')),
-    path('admin/', admin.site.urls),
+    path('sks/', admin.site.urls),
     path('cart/', include('cart.urls')),
     path('checkout/',views.checkout,name= 'checkout'),
     path('orders/', include('orders.urls')),

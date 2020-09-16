@@ -25,7 +25,7 @@ environ.Env.read_env()
 SECRET_KEY = env('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['ecommercewebapp.pythonanywhere.com', '127.0.0.1','localhost']
 
@@ -34,17 +34,16 @@ ALLOWED_HOSTS = ['ecommercewebapp.pythonanywhere.com', '127.0.0.1','localhost']
 if DEBUG:
     SITE_URL = ALLOWED_HOSTS[1]
 if not DEBUG:
-    SITE_URL = ALLOWED_HOSTS[1]
+    SITE_URL = ALLOWED_HOSTS[0]
 
-# Email stuff
-from .email import password
+# # Email stuff
 try:
-    DEFAULT_FROM_EMAIL = "ECommerce <shubhamfakeacc@gmail.com>"
+    DEFAULT_FROM_EMAIL = "ECommerce <ecommerce161@gmail.com>"
     EMAIL_HOST = 'smtp.gmail.com'
     EMAIL_USE_SSL = True
     EMAIL_PORT = 465
-    EMAIL_HOST_USER = 'shubhamfakeacc@gmail.com'
-    EMAIL_HOST_PASSWORD = password
+    EMAIL_HOST_USER = 'ecommerce161@gmail.com'
+    EMAIL_HOST_PASSWORD = env('EMAIL_PASSWORD')
 except:
     pass
 

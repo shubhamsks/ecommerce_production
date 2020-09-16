@@ -1,11 +1,15 @@
 {% extends 'base.html' %}
 
 {% block content %}
-{% for order in user.order_set.all %}
+ {% if user.order_set.all %}
+ {% for order in user.order_set.all %}
 	<div class="card p-3">
 		<h4>Order Id{{ order.order_id }}</h4>
 		<p>Order total {{ order.final_total }} INR</p>
 		
 	</div>
 {% endfor %}
+{% else %}
+<h3>You do not have any orders yet.</h3>
+{% endif %}
 {% endblock content %}

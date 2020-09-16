@@ -1,4 +1,4 @@
-# import stripe
+import stripe
 import random
 import hashlib
 from django.conf import settings
@@ -37,6 +37,7 @@ User = get_user_model()
 # 		print('created ',customer.id)
 # 		new_user_stripe.stripe_id = customer.id
 # 		new_user_stripe.save()
+
 def user_created(sender, instance, created, *args, **kwargs):
 	user = instance
 	if created:
