@@ -1,0 +1,65 @@
+.login_form {
+  border: 1px solid cyan;
+  border-radius: 10px;
+  padding: 16px;
+}
+
+html,
+body,
+header,
+.carousel {
+  height: 60vh;
+}
+
+@media (max-width: 740px) {
+  html,
+  body,
+  header,
+  .carousel {
+    height: 100vh;
+  }
+}
+/**
+ * The CSS shown here will not be introduced in the Quickstart guide, but shows
+ * how you can use CSS to style your Element's container.
+ */
+ /* Stripe css start  */
+ .StripeElement {
+  box-sizing: border-box;
+
+  height: 40px;
+
+  padding: 10px 12px;
+
+  border: 1px solid transparent;
+  border-radius: 4px;
+  background-color: white;
+
+  box-shadow: 0 1px 3px 0 #e6ebf1;
+  -webkit-transition: box-shadow 150ms ease;
+  transition: box-shadow 150ms ease;
+}
+
+.StripeElement--focus {
+  box-shadow: 0 1px 3px 0 #cfd7df;
+}
+
+.StripeElement--invalid {
+  border-color: #fa755a;
+}
+
+.StripeElement--webkit-autofill {
+  background-color: #fefde5 !important;
+}
+
+/* Stripe css end */
+
+@media (min-width: 800px) and (max-width: 850px) {
+  html,
+  body,
+  header,
+  .carousel {
+    height: 100vh;
+  }
+}
+.view,body,html{height:100%}.carousel{height:50%}.carousel .carousel-inner,.carousel .carousel-inner .active,.carousel .carousel-inner .carousel-item{height:100%}@media (max-width:776px){.carousel{height:100%}}.page-footer{background-color:#929FBA}
